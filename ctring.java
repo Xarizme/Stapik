@@ -2,7 +2,7 @@ import java.lang.Integer;
 
 public class ctring {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         int a = 256;
 
         System.out.println(Integer.toBinaryString(a));
