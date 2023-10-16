@@ -1,12 +1,12 @@
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int number1;
-        int number2;
-        int result;
+        int number1 = 0;
+        int number2 = 0;
+        int result = 0;
+        int resultArab = 0;
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         String[] arr = str.split(" ");
@@ -16,86 +16,97 @@ public class Main {
                 op = arr[i];
             }
         }
-        number1 = romanToNumber(arr[0]);
-        number2 = romanToNumber(arr[2]);
-        if (number1 < 0 && number2 < 0) {
-            result = 0;
-        } else {
-            result = calculator(number1, number2, op);
-            System.out.println("---Результат для римских цифр----");
-           // String resultRoman = convertNumToRoman(result);
-          //  System.out.println(resultRoman);
+        if (arr.length>2){
+            System.out.println("Можно считывать только две переменные");
         }
-        number1 = Integer.parseInt(arr[0]);
-        number2 = Integer.parseInt(arr[2]);
-        result = calculator(number1, number2, op);
-        System.out.println(result);
-    }
-    public static int romanToNumber (String roman){
         try {
-            if (roman.equals("I")){
+            number1 = romanToNumber(arr[0]);
+            number2 = romanToNumber(arr[2]);
+        }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Нет нужных символов");
+        }
+        if (number1==0 && number2==0){
+            result=0;
+            try {
+                number1=Integer.parseInt(arr[0]);
+                number2=Integer.parseInt(arr[2]);
+                
+            }
+        }
+
+
+
+    }
+
+    static int romanToNumber(String roman) {
+        try {
+            if (roman.equals("I")) {
                 return 1;
             }
-            if (roman.equals("II")){
+            if (roman.equals("II")) {
                 return 2;
             }
-            if (roman.equals("III")){
+            if (roman.equals("III")) {
                 return 3;
             }
-            if (roman.equals("IV")){
+            if (roman.equals("IV")) {
                 return 4;
             }
-            if (roman.equals("V")){
+            if (roman.equals("V")) {
                 return 5;
             }
-            if (roman.equals("VI")){
+            if (roman.equals("VI")) {
                 return 6;
             }
-            if (roman.equals("VII")){
+            if (roman.equals("VII")) {
                 return 7;
             }
-            if (roman.equals("VIII")){
+            if (roman.equals("VIII")) {
                 return 8;
             }
-            if (roman.equals("IX")){
+            if (roman.equals("IX")) {
                 return 9;
             }
-            if (roman.equals("X")){
+            if (roman.equals("X")) {
                 return 10;
             }
         } catch (InputMismatchException e) {
-
+            System.out.println("Не верное выражение");
         }
+        return -1;
+    }
+
+    static String convertNumToRoman(int numb) {
+        String[] roman = {"O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX",
+                "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX", "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX", "XL",
+                "XLI", "XLII", "XLIII", "XLIV", "XLV", "XLVI", "XLVII", "XLVIII", "XLIX", "L", "LI", "LII", "LIII", "LIV", "LV", "LVI", "LVII", "LVIII", "LIX", "LX",
+                "LXI", "LXII", "LXIII", "LXIV", "LXV", "LXVI", "LXVII", "LXVIII", "LXIX", "LXX",
+                "LXXI", "LXXII", "LXXIII", "LXXIV", "LXXV", "LXXVI", "LXXVII", "LXXVIII", "LXXIX", "LXXX",
+                "LXXXI", "LXXXII", "LXXXIII", "LXXXIV", "LXXXV", "LXXXVI", "LXXXVII", "LXXXVIII", "LXXXIX", "XC",
+                "XCI", "XCII", "XCIII", "XCIV", "XCV", "XCVI", "XCVII", "XCVIII", "XCIX", "C"};
+        String s = roman[numb];
+        return s;
     }
 
 
     public static int calculator(int num1, int num2, String op) {
         int result = 0;
-        try {
-            switch (op) {
-                case "+":
-                    result = num1 + num2;
-                    break;
-                case "-":
-                    result = num1 - num2;
-                    break;
-                case "*":
-                    result = num1 * num2;
-                    break;
-                case "/":
-                    try {
-                        result = num1 / num2;
-                    } catch (ArithmeticException | InputMismatchException e) {
-                        System.out.println("Делить на ноль нельзя");
-                    }
-                    break;
-            }
-        } catch (NullPointerException e){
-            System.out.println("Неверный знак");
+        switch (op) {
+            case "+":
+                result = num1 + num2;
+                break;
+            case "-":
+                result = num1 - num2;
+                break;
+            case "*":
+                result = num1 * num2;
+                break;
+            case "/":
+                result = num1 / num2;
+                break;
+            default:
+                break;
         }
         return result;
     }
 }
-
-
-
