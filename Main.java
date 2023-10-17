@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -16,21 +15,40 @@ public class Main {
                 op = arr[i];
             }
         }
-        if (arr.length>2){
+        if (arr.length>3){
             System.out.println("Можно считывать только две переменные");
         }
         try {
-            number1 = romanToNumber(arr[0]);
-            number2 = romanToNumber(arr[2]);
+            number1 = romToNum(arr[0]);
+            number2 = romToNumb(arr[2]);
         }catch (ArrayIndexOutOfBoundsException e){
             System.out.println("Нет нужных символов");
         }
-        if (number1==0 && number2==0){
+        if (number1==0 || number2==0){
             result=0;
             try {
                 number1=Integer.parseInt(arr[0]);
                 number2=Integer.parseInt(arr[2]);
-                
+                if (number1>10 || number2>10 | number1<0 | number2<0) {
+                    System.out.println("Калькулятор не работает с цифра больше 10");
+                }
+                resultArab= calculator(number1,number2,op);
+                System.out.println(resultArab);
+            } catch (NumberFormatException e) {
+                System.out.println("Выражение считаются только арабскими или римскими числами");
+            } catch (ArithmeticException e) {
+                System.out.println("На ноль делить нельзя");
+            }
+        } else {
+            try {
+                result =calculator(number1,number2,op);
+                if (result==0) {
+                    System.out.println("Работате только с положительными числами ");
+                }
+                String resultR = NumToRom(result);
+                System.out.println(resultR);
+            }catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Могут быть только положительные числа");
             }
         }
 
@@ -38,45 +56,44 @@ public class Main {
 
     }
 
-    static int romanToNumber(String roman) {
-        try {
+    static int romToNumb(String roman) {
             if (roman.equals("I")) {
                 return 1;
             }
-            if (roman.equals("II")) {
+            else if (roman.equals("II")) {
                 return 2;
             }
-            if (roman.equals("III")) {
+            else if (roman.equals("III")) {
                 return 3;
             }
-            if (roman.equals("IV")) {
+            else if (roman.equals("IV")) {
                 return 4;
             }
-            if (roman.equals("V")) {
+            else if (roman.equals("V")) {
                 return 5;
             }
-            if (roman.equals("VI")) {
+            else if (roman.equals("VI")) {
                 return 6;
             }
-            if (roman.equals("VII")) {
+            else if (roman.equals("VII")) {
                 return 7;
             }
-            if (roman.equals("VIII")) {
+            else if (roman.equals("VIII")) {
                 return 8;
             }
-            if (roman.equals("IX")) {
+            else if (roman.equals("IX")) {
                 return 9;
             }
-            if (roman.equals("X")) {
+            else if (roman.equals("X")) {
                 return 10;
             }
-        } catch (InputMismatchException e) {
-            System.out.println("Не верное выражение");
-        }
-        return -1;
+            else {
+                return 0;
+            }
+
     }
 
-    static String convertNumToRoman(int numb) {
+    static String NumToRom(int numb) {
         String[] roman = {"O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX",
                 "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX", "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX", "XL",
                 "XLI", "XLII", "XLIII", "XLIV", "XLV", "XLVI", "XLVII", "XLVIII", "XLIX", "L", "LI", "LII", "LIII", "LIV", "LV", "LVI", "LVII", "LVIII", "LIX", "LX",
