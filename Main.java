@@ -30,7 +30,7 @@ public class Main {
                 number1 = Integer.parseInt(arr[0]);
                 number2 = Integer.parseInt(arr[2]);
                 if (number1 > 10 || number2 > 10 | number1 < 0 | number2 < 0) {
-                    System.out.println("Калькулятор не работает с цифра больше 10");
+                    System.out.println("Калькулятор не работает с цифра больше 10 и меньше 0");
                 } else {
                     resultArab = calculator(number1, number2, op);
                     System.out.println(resultArab);
