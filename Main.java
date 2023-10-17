@@ -2,10 +2,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int number1 = 0;
-        int number2 = 0;
-        int result = 0;
-        int resultArab = 0;
+        int number1=0;
+        int number2=0;
+        int result;
+        int resultArab;
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         String[] arr = str.split(" ");
@@ -15,81 +15,73 @@ public class Main {
                 op = arr[i];
             }
         }
-        if (arr.length>3){
+        if (arr.length > 3) {
             System.out.println("Можно считывать только две переменные");
         }
         try {
-            number1 = romToNum(arr[0]);
+            number1 = romToNumb(arr[0]);
             number2 = romToNumb(arr[2]);
-        }catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Нет нужных символов");
         }
-        if (number1==0 || number2==0){
-            result=0;
+        if (number1 == 0 || number2 == 0) {
+            result = 0;
             try {
-                number1=Integer.parseInt(arr[0]);
-                number2=Integer.parseInt(arr[2]);
-                if (number1>10 || number2>10 | number1<0 | number2<0) {
+                number1 = Integer.parseInt(arr[0]);
+                number2 = Integer.parseInt(arr[2]);
+                if (number1 > 10 || number2 > 10 | number1 < 0 | number2 < 0) {
                     System.out.println("Калькулятор не работает с цифра больше 10");
+                } else {
+                    resultArab = calculator(number1, number2, op);
+                    System.out.println(resultArab);
                 }
-                resultArab= calculator(number1,number2,op);
-                System.out.println(resultArab);
             } catch (NumberFormatException e) {
                 System.out.println("Выражение считаются только арабскими или римскими числами");
             } catch (ArithmeticException e) {
                 System.out.println("На ноль делить нельзя");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.print("");
             }
         } else {
             try {
-                result =calculator(number1,number2,op);
-                if (result==0) {
+                result = calculator(number1, number2, op);
+                if (result == 0) {
                     System.out.println("Работате только с положительными числами ");
                 }
                 String resultR = NumToRom(result);
                 System.out.println(resultR);
-            }catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Могут быть только положительные числа");
             }
         }
 
 
-
     }
 
     static int romToNumb(String roman) {
-            if (roman.equals("I")) {
-                return 1;
-            }
-            else if (roman.equals("II")) {
-                return 2;
-            }
-            else if (roman.equals("III")) {
-                return 3;
-            }
-            else if (roman.equals("IV")) {
-                return 4;
-            }
-            else if (roman.equals("V")) {
-                return 5;
-            }
-            else if (roman.equals("VI")) {
-                return 6;
-            }
-            else if (roman.equals("VII")) {
-                return 7;
-            }
-            else if (roman.equals("VIII")) {
-                return 8;
-            }
-            else if (roman.equals("IX")) {
-                return 9;
-            }
-            else if (roman.equals("X")) {
-                return 10;
-            }
-            else {
-                return 0;
-            }
+        if (roman.equals("I")) {
+            return 1;
+        } else if (roman.equals("II")) {
+            return 2;
+        } else if (roman.equals("III")) {
+            return 3;
+        } else if (roman.equals("IV")) {
+            return 4;
+        } else if (roman.equals("V")) {
+            return 5;
+        } else if (roman.equals("VI")) {
+            return 6;
+        } else if (roman.equals("VII")) {
+            return 7;
+        } else if (roman.equals("VIII")) {
+            return 8;
+        } else if (roman.equals("IX")) {
+            return 9;
+        } else if (roman.equals("X")) {
+            return 10;
+        } else {
+            return 0;
+        }
 
     }
 
