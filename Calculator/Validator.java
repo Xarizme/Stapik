@@ -27,7 +27,7 @@ class Validator {
 
         checkOperator(operator);
 
-        if ((isRome(input1) && isRome(input2)) || (isStringInt(input1) && isStringInt(input2))) {
+        if (!((isRome(input1) && isRome(input2)) || (isStringInt(input1) && isStringInt(input2)))) {
             throw new RuntimeException("нужно вводить только римские или арабские цифры");
         }
 
