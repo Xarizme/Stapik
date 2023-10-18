@@ -51,7 +51,7 @@ class Proverca {
         if (operator == "+" || operator == "-" || operator == "*" || operator == "/" ){
             throw new RuntimeException("Нет такого оператора");
         }
-        if (isRom(input1)^ isRom(input2)) {
+        if (!(isRom(input1) || isRom(input2))) {
             throw new RuntimeException("разные системы");
         }
         if (!isRom(input1) && !isRom(input2) && (!isStringInt(input1) || !isStringInt(input2))){
