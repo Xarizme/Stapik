@@ -4,7 +4,6 @@ import static Calculator.Digits.ROME;
 
 class Validator {
     private static boolean isRome(String inputStr) {
-        boolean a = false;
 
         for (int i = 1; i <= 10; i++) {
             if (ROME[i].equals(inputStr)) {
@@ -24,21 +23,20 @@ class Validator {
     }
 
     public static String getNumeralSystem(String input1, String input2, String operator) {
-        String result = "";
+        String result;
 
         checkOperator(operator);
 
-        if (!isRome(input1) && !isRome(input2) && (!isStringInt(input1) || !isStringInt(input2))) {
+        if ((isRome(input1) && isRome(input2)) || (isStringInt(input1) && isStringInt(input2))) {
             throw new RuntimeException("нужно вводить только римские или арабские цифры");
         }
 
-        int op1 = 0;
-        int op2 = 0;
+        int op1;
+        int op2;
 
         if (isRome(input2)) {
-            Converter rom = new Converter();
-            op1 = rom.romeToNumber(input1);
-            op2 = rom.romeToNumber(input2);
+            op1 = Converter.romeToNumber(input1);
+            op2 = Converter.romeToNumber(input2);
         } else {
             op1 = Integer.parseInt(input1);
             op2 = Integer.parseInt(input2);
