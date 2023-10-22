@@ -3,7 +3,7 @@ package Calculator;
 public class Calculator {
 
     public static String calculate(String input) {
-        String result = null;
+        String result;
         String[] arr = input.split(" ");
 
         if (arr.length != 3 ){
