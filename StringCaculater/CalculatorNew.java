@@ -1,4 +1,4 @@
-package NewCaculater;
+package StringCaculater;
 
 public class CalculatorNew {
     private static String result;

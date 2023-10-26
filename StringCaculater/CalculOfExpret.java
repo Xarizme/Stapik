@@ -1,4 +1,4 @@
-package NewCaculater;
+package StringCaculater;
 
 public class CalculOfExpret {
     protected static String checkOper(String a, String b, String op) {

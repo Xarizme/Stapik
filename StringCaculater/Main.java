@@ -1,4 +1,4 @@
-package NewCaculater;
+package StringCaculater;
 
 import java.util.Scanner;
 

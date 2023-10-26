@@ -1,4 +1,4 @@
-package NewCaculater;
+package StringCaculater;
 
 public class Valid {
     private static boolean isStrig(String num) {

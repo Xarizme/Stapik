@@ -1,4 +1,4 @@
-package NewCaculater;
+package StringCaculater;
 
 public class ArithmOper {
 
